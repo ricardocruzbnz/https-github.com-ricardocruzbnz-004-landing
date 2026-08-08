@@ -7,10 +7,12 @@
   'use strict';
 
   /**
-   * Endpoint al que se envía el formulario.
-   * Déjalo en null para usar el modo demo (no se envía nada, solo muestra
-   * el estado de éxito). Cuando tengas backend, Formspree, HubSpot, etc.,
-   * pon aquí la URL y el formulario hará un POST real en JSON.
+   * URL de la aplicación web de Google Apps Script que recibe las
+   * solicitudes y las guarda en la hoja de cálculo.
+   * Instrucciones de despliegue en el README.
+   *
+   * Mientras esté en null, el formulario funciona en modo demo: valida y
+   * muestra la confirmación, pero no envía nada a ninguna parte.
    */
   var FORM_ENDPOINT = null;
 
@@ -269,12 +271,22 @@
       return;
     }
 
+    // Se envía como texto plano a propósito. Con application/json el
+    // navegador manda antes una petición OPTIONS de comprobación, y Apps
+    // Script no sabe atenderla: la solicitud se perdería. El cuerpo sigue
+    // siendo JSON y el script lo interpreta como tal.
     fetch(FORM_ENDPOINT, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(data)
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(data),
+      redirect: 'follow'
     })
-      .then(function (res) { return res.ok ? done() : fail(); })
+      .then(function (res) {
+        return res.json().catch(function () { return { ok: res.ok }; });
+      })
+      .then(function (respuesta) {
+        if (respuesta && respuesta.ok) { done(); } else { fail(); }
+      })
       .catch(fail);
   });
 

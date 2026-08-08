@@ -19,18 +19,42 @@ python3 -m http.server 4173
 
 Luego entra a `http://localhost:4173`.
 
-## Conectar el formulario
+## Conectar el formulario (Google Sheets)
 
 Por defecto el formulario está en **modo demo**: valida, muestra el estado de
 éxito y escribe los datos en la consola, pero no envía nada a ningún lado.
 
-Para conectarlo, abre `script.js` y cambia la primera constante:
+Las solicitudes se reciben con Google Apps Script: cada envío se guarda como
+fila en una hoja de cálculo y dispara un aviso por correo. Sin coste y sin
+instalar nada.
+
+### Despliegue
+
+1. Crea una hoja de cálculo nueva en [sheets.new](https://sheets.new) y ponle
+   nombre, por ejemplo *004 · Solicitudes*.
+2. En esa hoja: **Extensiones** → **Apps Script**.
+3. Borra el contenido del editor y pega entero
+   [`google-apps-script/Codigo.gs`](google-apps-script/Codigo.gs).
+4. Cambia la constante `AVISAR_A` por el correo donde quieras los avisos.
+   Guarda con `Cmd+S`.
+5. Botón **Implementar** → **Nueva implementación** → tipo **Aplicación web**.
+   - *Ejecutar como*: **Yo**
+   - *Quién tiene acceso*: **Cualquier usuario**  ← imprescindible; sin esto
+     el sitio no puede escribir.
+6. Autoriza los permisos. Google mostrará un aviso de app no verificada:
+   **Configuración avanzada** → *Ir a (nombre del proyecto)*. Es normal, el
+   script es tuyo.
+7. Copia la **URL de la aplicación web** (termina en `/exec`) y ponla en
+   `script.js`:
 
 ```js
-var FORM_ENDPOINT = 'https://tu-endpoint.com/leads';
+var FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfy.../exec';
 ```
 
-Hará un `POST` en JSON con estos campos:
+Para comprobar que quedó bien, abre esa URL en el navegador: debe responder
+`{"ok":true,...}`.
+
+### Datos que se envían
 
 | Campo | Descripción |
 |---|---|
@@ -41,11 +65,26 @@ Hará un `POST` en JSON con estos campos:
 | `presupuesto` | Solo en "Solicitar cotización" |
 | `mensaje` | Opcional |
 | `privacidad` | Consentimiento de contacto |
-| `enviado_en` | Timestamp ISO |
+| `website` | Trampa antispam, siempre vacío en envíos reales |
+| `enviado_en` | Marca de tiempo ISO |
 
-Sirve cualquier servicio que acepte JSON: Formspree, Basin, HubSpot Forms, una
-función serverless propia, etc. Si prefieres un calendario embebido (Calendly,
-Cal.com), reemplaza el bloque `.form-wrap` de `index.html` por el iframe.
+### Dos detalles que no son evidentes
+
+**Se envía como `text/plain`, no como `application/json`.** Con JSON el
+navegador manda antes una petición `OPTIONS` de comprobación que Apps Script
+no sabe atender, y la solicitud se pierde. El cuerpo sigue siendo JSON; solo
+cambia la etiqueta. No lo cambies a `application/json` "para arreglarlo".
+
+**La URL es pública.** Cualquiera puede enviarle datos. Por eso el formulario
+lleva un campo trampa (`website`), oculto por CSS: las personas no lo ven, los
+bots lo rellenan, y el script descarta esos envíos. Si algún día llega spam en
+volumen, el siguiente paso sería reCAPTCHA.
+
+### Si cambias el código del script
+
+Cada modificación necesita **Implementar** → **Gestionar implementaciones** →
+editar → *Versión: Nueva versión*. Si solo guardas, el sitio seguirá usando la
+versión anterior.
 
 ## Qué debes reemplazar antes de publicar
 
