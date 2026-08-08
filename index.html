@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>004 — Agencia de Marketing</title>
+  <meta name="description" content="004 es una agencia de marketing enfocada en crecimiento medible. Agenda una reunión o solicita una cotización.">
+  <meta name="theme-color" content="#0E0E0E">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="004 — Agencia de Marketing">
+  <meta property="og:description" content="Estrategia, contenido y performance para empresas que miden lo que invierten.">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230E0E0E'/><text x='16' y='22' font-family='Helvetica,Arial' font-size='15' font-weight='700' fill='white' text-anchor='middle'>004</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <!-- ══════════════ HEADER ══════════════ -->
+  <header class="site-header" id="header">
+    <div class="container header__inner">
+      <a href="#top" class="logo" aria-label="004, inicio">
+        <span class="logo__mark">004</span>
+        <span class="logo__dot" aria-hidden="true"></span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Navegación principal">
+        <a href="#servicios">Servicios</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#resultados">Resultados</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div class="header__actions">
+        <a href="#contacto" class="btn btn--dark btn--sm">Agendar reunión</a>
+        <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="nav" aria-label="Abrir menú">
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ══════════════ HERO ══════════════ -->
+    <section class="hero" id="top">
+      <div class="container">
+        <p class="eyebrow reveal">Agencia de marketing · B2B y B2C</p>
+
+        <h1 class="hero__title reveal">
+          Marketing que se mide<br>
+          en <em>resultados</em>, no en impresiones.
+        </h1>
+
+        <p class="hero__lead reveal">
+          Somos 004. Diseñamos y ejecutamos estrategias de adquisición para empresas
+          que necesitan crecer con números claros: costo por lead, pipeline y retorno.
+        </p>
+
+        <div class="hero__actions reveal">
+          <a href="#contacto" class="btn btn--dark" data-intent="reunion">Agendar una reunión</a>
+          <a href="#contacto" class="btn btn--ghost" data-intent="cotizacion">Solicitar cotización</a>
+        </div>
+
+        <p class="hero__note reveal">
+          Respuesta en menos de 24 horas hábiles · Sin compromiso
+        </p>
+
+        <!-- Reemplazar por métricas reales de la agencia -->
+        <dl class="stats reveal">
+          <div class="stat">
+            <dt>Clientes activos</dt>
+            <dd><span data-count="40">0</span>+</dd>
+          </div>
+          <div class="stat">
+            <dt>Crecimiento medio en pipeline</dt>
+            <dd><span data-count="180">0</span>%</dd>
+          </div>
+          <div class="stat">
+            <dt>Retención a 12 meses</dt>
+            <dd><span data-count="92">0</span>%</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ══════════════ MARCAS ══════════════ -->
+    <!-- Reemplazar por los logos/nombres reales de clientes -->
+    <section class="marquee" aria-label="Marcas con las que trabajamos">
+      <div class="container">
+        <p class="marquee__label">Trabajamos con equipos de</p>
+        <ul class="marquee__list">
+          <li>Nordika</li>
+          <li>Vantel</li>
+          <li>Casa Mar</li>
+          <li>Iberis</li>
+          <li>Kova Labs</li>
+          <li>Altura</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ══════════════ SERVICIOS ══════════════ -->
+    <section class="section" id="servicios">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">Servicios</p>
+          <h2>Cuatro frentes. Un solo objetivo.</h2>
+          <p class="section__lead">
+            Puedes contratarlos por separado o como una operación completa de marketing.
+          </p>
+        </header>
+
+        <div class="grid grid--4">
+          <article class="card reveal">
+            <span class="card__num">001</span>
+            <h3>Estrategia y posicionamiento</h3>
+            <p>
+              Investigación de mercado, definición de propuesta de valor, mensajes por
+              segmento y plan de canales con metas trimestrales.
+            </p>
+          </article>
+
+          <article class="card reveal">
+            <span class="card__num">002</span>
+            <h3>Performance y medios pagados</h3>
+            <p>
+              Google, Meta y LinkedIn Ads gestionados con foco en costo por adquisición,
+              no en clics. Reportes semanales con decisiones, no solo datos.
+            </p>
+          </article>
+
+          <article class="card reveal">
+            <span class="card__num">003</span>
+            <h3>Contenido y marca</h3>
+            <p>
+              Identidad, dirección de arte, producción audiovisual y contenido editorial
+              que sostiene la demanda cuando apagas la pauta.
+            </p>
+          </article>
+
+          <article class="card reveal">
+            <span class="card__num">004</span>
+            <h3>Web, CRO y analítica</h3>
+            <p>
+              Landing pages, embudos, automatizaciones y medición end-to-end para saber
+              exactamente de dónde viene cada venta.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ PROCESO ══════════════ -->
+    <section class="section section--alt" id="proceso">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">Cómo trabajamos</p>
+          <h2>Un proceso corto y sin humo.</h2>
+          <p class="section__lead">
+            De la primera llamada a la primera campaña activa en cuatro semanas.
+          </p>
+        </header>
+
+        <ol class="steps">
+          <li class="step reveal">
+            <span class="step__num">01</span>
+            <div>
+              <h3>Diagnóstico</h3>
+              <p>Reunión de 30 minutos. Revisamos tu situación actual, metas y presupuesto.</p>
+            </div>
+            <span class="step__time">Día 1</span>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">02</span>
+            <div>
+              <h3>Propuesta</h3>
+              <p>Plan de trabajo con alcance, entregables, cronograma e inversión cerrada.</p>
+            </div>
+            <span class="step__time">Día 3</span>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">03</span>
+            <div>
+              <h3>Implementación</h3>
+              <p>Montamos tracking, creatividades y campañas. Tú apruebas, nosotros ejecutamos.</p>
+            </div>
+            <span class="step__time">Semana 2</span>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">04</span>
+            <div>
+              <h3>Optimización</h3>
+              <p>Iteración continua con reporte quincenal y una sesión mensual de estrategia.</p>
+            </div>
+            <span class="step__time">Continuo</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ══════════════ RESULTADOS ══════════════ -->
+    <section class="section" id="resultados">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">Resultados</p>
+          <h2>Lo que cambia cuando la medición es seria.</h2>
+        </header>
+
+        <!-- Reemplazar por casos y testimonios reales -->
+        <div class="grid grid--3">
+          <article class="case reveal">
+            <p class="case__metric">−38%</p>
+            <h3>Costo por lead calificado</h3>
+            <p>Ecommerce de retail, en 5 meses, reestructurando campañas y landing pages.</p>
+          </article>
+          <article class="case reveal">
+            <p class="case__metric">3,4×</p>
+            <h3>Retorno sobre inversión publicitaria</h3>
+            <p>Marca de consumo masivo tras rediseñar el embudo y la oferta de entrada.</p>
+          </article>
+          <article class="case reveal">
+            <p class="case__metric">+210%</p>
+            <h3>Reuniones agendadas por mes</h3>
+            <p>Empresa de software B2B, combinando contenido, LinkedIn Ads y outbound.</p>
+          </article>
+        </div>
+
+        <figure class="quote reveal">
+          <blockquote>
+            “Es la primera agencia que nos llega con decisiones en vez de reportes.
+            En el primer trimestre ya sabíamos qué canal cortar y cuál duplicar.”
+          </blockquote>
+          <figcaption>
+            <strong>Nombre del cliente</strong>
+            <span>Directora de Marketing, Empresa</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ══════════════ CONTACTO ══════════════ -->
+    <section class="section contact" id="contacto">
+      <div class="container contact__inner">
+
+        <div class="contact__intro reveal">
+          <p class="eyebrow">Siguiente paso</p>
+          <h2>Hablemos de tu proyecto.</h2>
+          <p class="section__lead">
+            Elige lo que necesitas: una reunión de diagnóstico de 30 minutos o una
+            cotización formal según tu alcance.
+          </p>
+
+          <ul class="contact__list">
+            <li>Diagnóstico inicial sin costo</li>
+            <li>Propuesta con inversión cerrada en 72 horas</li>
+            <li>Sin contratos de permanencia forzada</li>
+          </ul>
+
+          <div class="contact__direct">
+            <a href="mailto:hola@004.agency">hola@004.agency</a>
+            <a href="tel:+000000000">+00 000 000 000</a>
+          </div>
+        </div>
+
+        <div class="form-wrap reveal">
+          <div class="tabs" role="tablist" aria-label="Tipo de solicitud">
+            <button role="tab" id="tab-reunion" aria-controls="contactForm" aria-selected="true" class="tab is-active" data-intent="reunion">
+              Agendar reunión
+            </button>
+            <button role="tab" id="tab-cotizacion" aria-controls="contactForm" aria-selected="false" class="tab" data-intent="cotizacion">
+              Solicitar cotización
+            </button>
+          </div>
+
+          <form class="form" id="contactForm" novalidate role="tabpanel" aria-labelledby="tab-reunion">
+            <input type="hidden" name="tipo_solicitud" id="tipoSolicitud" value="reunion">
+
+            <div class="field">
+              <label for="nombre">Nombre y apellido</label>
+              <input type="text" id="nombre" name="nombre" autocomplete="name" required>
+              <p class="error" data-error-for="nombre"></p>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="email">Email corporativo</label>
+                <input type="email" id="email" name="email" autocomplete="email" required>
+                <p class="error" data-error-for="email"></p>
+              </div>
+              <div class="field">
+                <label for="empresa">Empresa</label>
+                <input type="text" id="empresa" name="empresa" autocomplete="organization" required>
+                <p class="error" data-error-for="empresa"></p>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="servicio">¿Qué necesitas?</label>
+              <select id="servicio" name="servicio" required>
+                <option value="">Selecciona una opción</option>
+                <option>Estrategia y posicionamiento</option>
+                <option>Performance y medios pagados</option>
+                <option>Contenido y marca</option>
+                <option>Web, CRO y analítica</option>
+                <option>Operación completa de marketing</option>
+                <option>Todavía no lo tengo claro</option>
+              </select>
+              <p class="error" data-error-for="servicio"></p>
+            </div>
+
+            <!-- Campos exclusivos de "Agendar reunión" -->
+            <div class="field-row" data-only="reunion">
+              <div class="field">
+                <label for="fecha">Fecha preferida</label>
+                <input type="date" id="fecha" name="fecha">
+              </div>
+              <div class="field">
+                <label for="horario">Franja horaria</label>
+                <select id="horario" name="horario">
+                  <option>Mañana (9:00 – 12:00)</option>
+                  <option>Tarde (12:00 – 17:00)</option>
+                  <option>Fin del día (17:00 – 19:00)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Campos exclusivos de "Solicitar cotización" -->
+            <div class="field" data-only="cotizacion" hidden>
+              <label for="presupuesto">Presupuesto mensual estimado</label>
+              <select id="presupuesto" name="presupuesto">
+                <option value="">Selecciona un rango</option>
+                <option>Menos de US$ 2.000</option>
+                <option>US$ 2.000 – US$ 5.000</option>
+                <option>US$ 5.000 – US$ 10.000</option>
+                <option>Más de US$ 10.000</option>
+                <option>Prefiero definirlo en la reunión</option>
+              </select>
+              <p class="error" data-error-for="presupuesto"></p>
+            </div>
+
+            <div class="field">
+              <label for="mensaje">Cuéntanos brevemente tu objetivo <span class="optional">(opcional)</span></label>
+              <textarea id="mensaje" name="mensaje" rows="4" placeholder="Ej: queremos duplicar los leads calificados antes de fin de año."></textarea>
+            </div>
+
+            <label class="check">
+              <input type="checkbox" id="privacidad" name="privacidad" required>
+              <span>Acepto que 004 me contacte por email o teléfono sobre esta solicitud.</span>
+            </label>
+            <p class="error" data-error-for="privacidad"></p>
+
+            <button type="submit" class="btn btn--dark btn--full" id="submitBtn">
+              <span class="btn__label">Enviar solicitud</span>
+            </button>
+
+            <p class="form__note">Normalmente respondemos el mismo día hábil.</p>
+          </form>
+
+          <div class="form-success" id="formSuccess" hidden>
+            <div class="form-success__mark" aria-hidden="true">✓</div>
+            <h3>Solicitud enviada</h3>
+            <p id="successMsg">Gracias. Te escribiremos en menos de 24 horas hábiles para confirmar los detalles.</p>
+            <button type="button" class="btn btn--ghost btn--sm" id="resetForm">Enviar otra solicitud</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════ FAQ ══════════════ -->
+    <section class="section section--alt" id="faq">
+      <div class="container container--narrow">
+        <header class="section__head reveal">
+          <p class="eyebrow">Preguntas frecuentes</p>
+          <h2>Antes de la reunión.</h2>
+        </header>
+
+        <div class="faq">
+          <details class="reveal">
+            <summary>¿Cuánto cuesta trabajar con 004?</summary>
+            <p>
+              Los proyectos parten desde US$ 2.000 mensuales para alcances puntuales.
+              Una operación completa de marketing se cotiza según canales, volumen de
+              contenido y presupuesto de medios. Siempre entregamos inversión cerrada
+              antes de empezar.
+            </p>
+          </details>
+          <details class="reveal">
+            <summary>¿Trabajan con contratos de permanencia?</summary>
+            <p>
+              Recomendamos un mínimo de tres meses porque antes de ese plazo los datos
+              no son concluyentes, pero no bloqueamos la salida: puedes terminar con
+              30 días de aviso.
+            </p>
+          </details>
+          <details class="reveal">
+            <summary>¿Manejan el presupuesto de medios?</summary>
+            <p>
+              Podemos gestionarlo desde tus propias cuentas publicitarias, que siempre
+              quedan a tu nombre. La inversión en medios es independiente del fee de agencia.
+            </p>
+          </details>
+          <details class="reveal">
+            <summary>¿En cuánto tiempo se ven resultados?</summary>
+            <p>
+              Las primeras señales aparecen entre la semana 3 y la 6. Resultados
+              estructurales, como bajar el costo de adquisición de forma sostenida,
+              suelen tomar de tres a cuatro meses.
+            </p>
+          </details>
+          <details class="reveal">
+            <summary>¿Atienden empresas fuera del país?</summary>
+            <p>
+              Sí. Trabajamos de forma remota con equipos en toda Latinoamérica y España,
+              en español e inglés.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ CTA FINAL ══════════════ -->
+    <section class="cta">
+      <div class="container">
+        <h2 class="reveal">¿Empezamos con 30 minutos?</h2>
+        <p class="reveal">
+          Sin presentación comercial. Revisamos tus números y te decimos con franqueza
+          si podemos ayudarte.
+        </p>
+        <a href="#contacto" class="btn btn--light reveal" data-intent="reunion">Agendar una reunión</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer class="site-footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="logo__mark">004</span>
+        <p>Agencia de marketing enfocada en crecimiento medible.</p>
+      </div>
+
+      <nav class="footer__nav" aria-label="Enlaces del pie de página">
+        <div>
+          <h4>Agencia</h4>
+          <a href="#servicios">Servicios</a>
+          <a href="#proceso">Proceso</a>
+          <a href="#resultados">Resultados</a>
+        </div>
+        <div>
+          <h4>Contacto</h4>
+          <a href="#contacto">Agendar reunión</a>
+          <a href="#contacto">Cotización</a>
+          <a href="mailto:hola@004.agency">hola@004.agency</a>
+        </div>
+        <div>
+          <h4>Redes</h4>
+          <a href="#">LinkedIn</a>
+          <a href="#">Instagram</a>
+          <a href="#">Behance</a>
+        </div>
+      </nav>
+    </div>
+
+    <div class="container footer__bottom">
+      <p>© <span id="year">2026</span> 004. Todos los derechos reservados.</p>
+      <p><a href="#">Aviso de privacidad</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
