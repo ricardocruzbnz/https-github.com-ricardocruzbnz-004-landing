@@ -65,10 +65,21 @@ Está marcado con comentarios `<!-- Reemplazar ... -->` en `index.html`:
 Los colores y espaciados viven en `:root`, al inicio de `styles.css`:
 
 ```css
---ink:    #0E0E0E;   /* negro principal */
---accent: #1F3BEB;   /* azul de acento */
---paper:  #FFFFFF;
+--ink:      #0E0E0E;  /* negro    hsl(0 0% 5%)       */
+--brown:    #9F512D;  /* café     hsl(19 56% 40%)    */
+--blue:     #1F8FFF;  /* azul     hsl(210 100% 56%)  */
+--blue-ink: #0066CC;  /* mismo azul, legible sobre beige */
+--paper:    #FFEFD6;  /* beige    hsl(37 100% 92%)   */
 ```
+
+**Cuidado al tocar los tonos.** El azul `--blue` da 2,89:1 sobre el beige, por
+debajo del mínimo de 4,5:1 que exige WCAG AA para texto. Por eso solo aparece
+como grafismo (viñetas, reglas, subrayados) o sobre los bloques negros, donde
+rinde 5,91:1. Todo texto pequeño en azul usa `--blue-ink`, el mismo tono al
+40 % de luminosidad, que da 4,92:1.
+
+Lo mismo con `--paper-alt`: si lo oscureces, el café baja de 4,5:1 y el texto
+secundario de las secciones alternas deja de cumplir.
 
 La tipografía usa el stack del sistema con `Inter` primero. Si quieres cargar
 Inter como webfont, añade el `<link>` en el `<head>` de `index.html`.
