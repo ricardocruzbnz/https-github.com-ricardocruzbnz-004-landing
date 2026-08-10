@@ -9,13 +9,13 @@
  */
 
 /** Destino de los avisos. Cámbialo por tu correo. */
-const AVISAR_A = 'CAMBIAR@ejemplo.com';
+var AVISAR_A = 'CAMBIAR@ejemplo.com';
 
 /** Nombre de la pestaña donde se guardan las solicitudes. */
-const NOMBRE_HOJA = 'Solicitudes';
+var NOMBRE_HOJA = 'Solicitudes';
 
 /** Columnas, en orden. La primera fila se crea sola. */
-const COLUMNAS = [
+var COLUMNAS = [
   'Recibido',
   'Tipo',
   'Nombre',
@@ -37,7 +37,7 @@ function doPost(e) {
       return responder({ ok: false, error: 'Petición sin cuerpo' });
     }
 
-    const datos = JSON.parse(e.postData.contents);
+    var datos = JSON.parse(e.postData.contents);
 
     // Trampa antispam: los bots rellenan todos los campos, incluido el
     // que está oculto. Si viene con contenido, respondemos ok y no
@@ -53,7 +53,7 @@ function doPost(e) {
 
   } catch (error) {
     // Queda registrado en Extensiones → Apps Script → Ejecuciones
-    console.error('Error procesando la solicitud: ' + error);
+    Logger.log('Error procesando la solicitud: ' + error);
     return responder({ ok: false, error: String(error) });
   }
 }
@@ -67,8 +67,8 @@ function doGet() {
 
 /** Devuelve la pestaña de solicitudes, creándola con cabeceras si no existe. */
 function obtenerHoja() {
-  const libro = SpreadsheetApp.getActiveSpreadsheet();
-  let hoja = libro.getSheetByName(NOMBRE_HOJA);
+  var libro = SpreadsheetApp.getActiveSpreadsheet();
+  var hoja = libro.getSheetByName(NOMBRE_HOJA);
 
   if (!hoja) {
     hoja = libro.insertSheet(NOMBRE_HOJA);
@@ -76,7 +76,7 @@ function obtenerHoja() {
 
   if (hoja.getLastRow() === 0) {
     hoja.appendRow(COLUMNAS);
-    const cabecera = hoja.getRange(1, 1, 1, COLUMNAS.length);
+    var cabecera = hoja.getRange(1, 1, 1, COLUMNAS.length);
     cabecera.setFontWeight('bold').setBackground('#FFEFD6');
     hoja.setFrozenRows(1);
   }
@@ -86,7 +86,7 @@ function obtenerHoja() {
 
 
 function guardarFila(datos) {
-  const hoja = obtenerHoja();
+  var hoja = obtenerHoja();
 
   hoja.appendRow([
     new Date(),
@@ -111,12 +111,12 @@ function avisarPorCorreo(datos) {
     return; // Aún sin configurar: se guarda la fila igualmente
   }
 
-  const esCotizacion = datos.tipo_solicitud === 'cotizacion';
-  const asunto = (esCotizacion ? 'Cotización' : 'Reunión') +
+  var esCotizacion = datos.tipo_solicitud === 'cotizacion';
+  var asunto = (esCotizacion ? 'Cotización' : 'Reunión') +
                  ' · ' + (datos.empresa || 'sin empresa') +
                  ' · ' + (datos.nombre || '');
 
-  const lineas = [
+  var lineas = [
     'Tipo:        ' + (esCotizacion ? 'Solicitud de cotización' : 'Solicitud de reunión'),
     'Nombre:      ' + (datos.nombre || '—'),
     'Email:       ' + (datos.email || '—'),
