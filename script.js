@@ -14,7 +14,7 @@
    * Mientras esté en null, el formulario funciona en modo demo: valida y
    * muestra la confirmación, pero no envía nada a ninguna parte.
    */
-  var FORM_ENDPOINT = null;
+  var FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzTbmNFfrckiCpc6NvtBVfVi-AcHU8jc5sMFzfXdD7rXN79zK-Z_eJsbJR6uxlaaYMR/exec';
 
   var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
