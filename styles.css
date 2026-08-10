@@ -324,7 +324,9 @@ a {
   color: var(--muted);
 }
 
-.stats {
+/* Banda de compromisos del hero. Ocupa el lugar donde antes iban las
+   métricas: el peso visual lo lleva el término, no una cifra. */
+.pledges {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1px;
@@ -332,22 +334,23 @@ a {
   background: var(--line);
   border-block: 1px solid var(--line);
 }
-.stat {
+.pledge {
   background: var(--paper);
   padding: 1.75rem 1.5rem 1.75rem 0;
 }
-.stat:not(:first-child) { padding-left: 1.5rem; }
-.stat dt {
-  font-size: 0.83rem;
-  color: var(--muted);
-  margin-bottom: 0.5rem;
-}
-.stat dd {
-  margin: 0;
-  font-size: clamp(1.9rem, 3.6vw, 2.7rem);
+.pledge:not(:first-child) { padding-left: 1.5rem; }
+.pledge dt {
+  font-size: 1.05rem;
   font-weight: 600;
-  letter-spacing: -0.04em;
-  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.025em;
+  margin-bottom: 0.6rem;
+}
+.pledge dd {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--muted);
+  max-width: 34ch;
 }
 
 /* ─── Marcas ─────────────────────────────── */
@@ -444,54 +447,64 @@ a {
   padding-top: 0.45rem;
 }
 
-/* ─── Casos y cita ───────────────────────── */
+/* ─── Entregables y compromisos ──────────── */
 .grid--3 { background: var(--line); border: 1px solid var(--line); }
 
-.case {
-  background: var(--paper);
-  padding: clamp(1.75rem, 3vw, 2.4rem);
-}
-.case__metric {
-  font-size: clamp(2.4rem, 5vw, 3.4rem);
-  font-weight: 600;
-  letter-spacing: -0.05em;
-  line-height: 1;
-  margin-bottom: 1.5rem;
-  color: var(--blue-ink);
-  font-variant-numeric: tabular-nums;
-}
-.case h3 {
-  font-size: 1.02rem;
-  margin-bottom: 0.6rem;
-}
-/* :not() excluye la métrica: si no, este selector (0-1-1) le gana a
-   .case__metric (0-1-0) y le impone tamaño y color de texto corrido. */
-.case p:not(.case__metric) {
-  font-size: 0.92rem;
-  color: var(--muted);
+/* En esta rejilla el rótulo de la tarjeta no es un número de orden sino
+   la frecuencia del entregable, así que no va en versalitas apretadas. */
+.grid--3 .card__num {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 2.5rem;
 }
 
-.quote {
+.commitment {
   margin: clamp(3rem, 6vw, 5rem) 0 0;
   padding: clamp(2rem, 5vw, 3.5rem);
   background: var(--ink);
   color: var(--paper);
   border-radius: var(--radius-lg);
 }
-.quote blockquote {
-  margin: 0 0 1.75rem;
+.commitment h3 {
   font-size: clamp(1.2rem, 2.6vw, 1.75rem);
-  line-height: 1.4;
+  line-height: 1.3;
   letter-spacing: -0.025em;
-  max-width: 30ch;
+  max-width: 24ch;
+  margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
 }
-.quote figcaption {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  font-size: 0.88rem;
+.commitment ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.4rem;
 }
-.quote figcaption span { color: var(--blue); }
+.commitment li {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--on-dark);
+  max-width: 62ch;
+  padding-left: 1.6rem;
+  position: relative;
+}
+.commitment li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.66em;
+  width: 8px;
+  height: 2px;
+  background: var(--blue);
+}
+.commitment strong {
+  color: var(--paper);
+  font-weight: 600;
+}
+
+@media (min-width: 861px) {
+  .commitment ul { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .commitment li { max-width: none; }
+}
 
 /* ─── Contacto ───────────────────────────── */
 .contact__inner {
@@ -836,9 +849,9 @@ a {
   .header__actions .btn { display: none; }
 
   .grid--3 { grid-template-columns: 1fr; }
-  .stats { grid-template-columns: 1fr; }
-  .stat { padding: 1.35rem 0; }
-  .stat:not(:first-child) { padding-left: 0; }
+  .pledges { grid-template-columns: 1fr; }
+  .pledge { padding: 1.35rem 0; }
+  .pledge:not(:first-child) { padding-left: 0; }
 
   .footer__inner { grid-template-columns: 1fr; }
 }

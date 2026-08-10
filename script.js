@@ -74,38 +74,6 @@
     revealEls.forEach(function (el) { revealObserver.observe(el); });
   }
 
-  /* ─── Contadores de métricas ───────────── */
-  var counters = document.querySelectorAll('[data-count]');
-
-  var animateCount = function (el) {
-    var target = parseInt(el.getAttribute('data-count'), 10);
-    if (prefersReducedMotion) { el.textContent = target; return; }
-
-    var duration = 1200;
-    var start = performance.now();
-
-    var tick = function (now) {
-      var p = Math.min((now - start) / duration, 1);
-      var eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(target * eased);
-      if (p < 1) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-  };
-
-  if ('IntersectionObserver' in window) {
-    var countObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        animateCount(entry.target);
-        countObserver.unobserve(entry.target);
-      });
-    }, { threshold: 0.5 });
-    counters.forEach(function (el) { countObserver.observe(el); });
-  } else {
-    counters.forEach(function (el) { el.textContent = el.getAttribute('data-count'); });
-  }
-
   /* ─── Tabs: reunión / cotización ───────── */
   var tabs = document.querySelectorAll('.tab');
   var form = document.getElementById('contactForm');
