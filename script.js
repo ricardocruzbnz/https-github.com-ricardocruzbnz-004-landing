@@ -86,11 +86,11 @@
   var COPY = {
     reunion: {
       button: 'Agendar reunión',
-      success: 'Gracias. Te confirmaremos la reunión por email en menos de 24 horas hábiles.'
+      success: 'Gracias. Te escribiremos por correo para confirmar la reunión.'
     },
     cotizacion: {
       button: 'Solicitar cotización',
-      success: 'Gracias. Recibirás una propuesta con alcance e inversión en un máximo de 72 horas.'
+      success: 'Gracias. Prepararemos una propuesta con el alcance y la inversión por escrito.'
     }
   };
 
