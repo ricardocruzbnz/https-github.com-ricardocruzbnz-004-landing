@@ -249,20 +249,15 @@ a {
 
 .logo {
   display: inline-flex;
-  align-items: baseline;
-  gap: 3px;
+  align-items: center;
 }
+/* El alto manda: el logotipo se escala por altura para encajar en la
+   cabecera, y el ancho sale de la proporción del bloqueo. */
 .logo__mark {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
-  font-weight: 700;
-  letter-spacing: -0.05em;
-}
-.logo__dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--brown);
+  height: 38px;
+  width: auto;
+  display: block;
+  overflow: visible;
 }
 
 .nav {
@@ -795,7 +790,14 @@ a {
   gap: clamp(2rem, 5vw, 4rem);
   padding-bottom: 3rem;
 }
-.footer__brand .logo__mark { color: var(--paper); display: block; margin-bottom: 0.9rem; }
+.footer__logo {
+  width: 100%;
+  max-width: 290px;
+  height: auto;
+  display: block;
+  margin-bottom: 1.25rem;
+  font-family: var(--font-display);
+}
 .footer__brand p { max-width: 30ch; }
 
 .footer__nav {

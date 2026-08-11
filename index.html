@@ -44,9 +44,19 @@
   <!-- ══════════════ HEADER ══════════════ -->
   <header class="site-header" id="header">
     <div class="container header__inner">
-      <a href="#top" class="logo" aria-label="004, inicio">
-        <span class="logo__mark">004</span>
-        <span class="logo__dot" aria-hidden="true"></span>
+      <!-- Logotipo reconstruido a partir del manual de marca. En cabecera
+           va sin el descriptor, que a este tamaño sería ilegible. -->
+      <a href="#top" class="logo" aria-label="004 Agencia de Marketing, inicio">
+        <svg class="logo__mark" viewBox="0 0 1000 390" role="img" aria-hidden="true" focusable="false">
+          <g fill="none" stroke="var(--brown)" stroke-width="17">
+            <circle cx="146" cy="130" r="109"/>
+            <circle cx="525" cy="130" r="109"/>
+            <path d="M874 5 L723 229 L957 229"/>
+            <path d="M874 5 L874 374"/>
+          </g>
+          <path d="M759 120 L992 120 L992 381 L8 381"
+                fill="none" stroke="var(--espresso)" stroke-width="10"/>
+        </svg>
       </a>
 
       <nav class="nav" id="nav" aria-label="Navegación principal">
@@ -517,7 +527,21 @@
   <footer class="site-footer">
     <div class="container footer__inner">
       <div class="footer__brand">
-        <span class="logo__mark">004</span>
+        <!-- Bloqueo completo: sobre fondo espresso el marco va en crema,
+             tal como aparece en el manual. -->
+        <svg class="footer__logo" viewBox="0 0 1000 390" role="img"
+             aria-label="004 Agencia de Marketing">
+          <g fill="none" stroke="var(--brown)" stroke-width="17">
+            <circle cx="146" cy="130" r="109"/>
+            <circle cx="525" cy="130" r="109"/>
+            <path d="M874 5 L723 229 L957 229"/>
+            <path d="M874 5 L874 374"/>
+          </g>
+          <path d="M759 120 L992 120 L992 381 L8 381"
+                fill="none" stroke="var(--cream)" stroke-width="10"/>
+          <text x="8" y="328" font-size="32" font-weight="600"
+                letter-spacing="25" fill="var(--cream)">AGENCIA DE MARKETING</text>
+        </svg>
         <p>Marcas memorables. Negocios que trascienden.</p>
       </div>
 
