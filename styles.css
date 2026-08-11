@@ -102,6 +102,13 @@ h1, h2, h3, h4 {
 p { margin: 0; }
 img { max-width: 100%; display: block; }
 
+/* Alatsi no tiene negrita. Sin esta regla el navegador la falsearía
+   engrosando los trazos, que se ve sucio. */
+strong {
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
 /* El atributo hidden debe ganarle a los display: grid/flex de abajo */
 [hidden] { display: none !important; }
 
@@ -432,6 +439,31 @@ a {
   font-size: 0.94rem;
   color: var(--muted);
   line-height: 1.6;
+}
+
+/* El plazo se ancla al pie de la tarjeta: así los cuatro quedan
+   alineados aunque las descripciones tengan distinto largo. */
+.card { display: flex; flex-direction: column; }
+.card h3 + p { flex: 1; }
+.card__time {
+  margin-top: 1.5rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.card__time strong {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.grid-note {
+  margin-top: 1.25rem;
+  font-size: 0.85rem;
+  color: var(--muted);
 }
 
 /* ─── Proceso ────────────────────────────── */

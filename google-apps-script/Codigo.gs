@@ -8,8 +8,8 @@
  * Instrucciones de despliegue en el README del repositorio.
  */
 
-/** Destino de los avisos. Cámbialo por tu correo. */
-var AVISAR_A = 'CAMBIAR@ejemplo.com';
+/** Destino de los avisos de nuevas solicitudes. */
+var AVISAR_A = 'marketingby004@gmail.com';
 
 /** Nombre de la pestaña donde se guardan las solicitudes. */
 var NOMBRE_HOJA = 'Solicitudes';
@@ -77,7 +77,7 @@ function obtenerHoja() {
   if (hoja.getLastRow() === 0) {
     hoja.appendRow(COLUMNAS);
     var cabecera = hoja.getRange(1, 1, 1, COLUMNAS.length);
-    cabecera.setFontWeight('bold').setBackground('#FFEFD6');
+    cabecera.setFontWeight('bold').setBackground('#F0EADA');
     hoja.setFrozenRows(1);
   }
 
