@@ -101,24 +101,53 @@ Está marcado con comentarios `<!-- Reemplazar ... -->` en `index.html`:
 
 ## Personalización rápida
 
-Los colores y espaciados viven en `:root`, al inicio de `styles.css`:
+Los colores y espaciados viven en `:root`, al inicio de `styles.css`. Son los
+cuatro del manual de marca, sin añadidos:
 
 ```css
---ink:      #0E0E0E;  /* negro    hsl(0 0% 5%)       */
---brown:    #9F512D;  /* café     hsl(19 56% 40%)    */
---blue:     #1F8FFF;  /* azul     hsl(210 100% 56%)  */
---blue-ink: #0066CC;  /* mismo azul, legible sobre beige */
---paper:    #FFEFD6;  /* beige    hsl(37 100% 92%)   */
+--cream:    #F0EADA;  /* fondo                      */
+--grey:     #C5C1B7;  /* líneas y grafismo          */
+--brown:    #855C4C;  /* texto secundario y acento  */
+--espresso: #533C36;  /* texto principal y bloques oscuros */
 ```
 
-**Cuidado al tocar los tonos.** El azul `--blue` da 2,89:1 sobre el beige, por
-debajo del mínimo de 4,5:1 que exige WCAG AA para texto. Por eso solo aparece
-como grafismo (viñetas, reglas, subrayados) o sobre los bloques negros, donde
-rinde 5,91:1. Todo texto pequeño en azul usa `--blue-ink`, el mismo tono al
-40 % de luminosidad, que da 4,92:1.
+**Dos reglas que no se pueden romper**, medidas y no estimadas:
 
-Lo mismo con `--paper-alt`: si lo oscureces, el café baja de 4,5:1 y el texto
-secundario de las secciones alternas deja de cumplir.
+- El **gris nunca lleva texto**. Sobre la crema da 1,50:1, muy por debajo del
+  4,5:1 que exige WCAG AA. Solo sirve para líneas y separadores.
+- El **café no se usa sobre los bloques espresso**: da 1,76:1. Ahí el acento
+  es crema (8,46:1) o gris (5,65:1).
+
+Sobre la crema: espresso 8,46:1 · café 4,81:1. Los dos cumplen para texto.
+
+Hay cuatro valores derivados, todos mezclas de esos mismos colores:
+`--paper-alt` (crema + 14 % gris, no oscurecer más o el café cae de 4,5:1),
+`--line-soft`, `--ink-lift` para el hover de botones, y `--placeholder`.
+
+`--danger` (#8E3B2A) es **el único color fuera del manual**. Un mensaje de
+error en café no se lee como error: es color semántico, no decorativo. Está
+desplazado hacia la familia cálida de la marca y rinde 6,22:1.
+
+## Tipografías
+
+```css
+--font-display: "Poppins";  /* títulos y todo lo que lleve peso */
+--font-body:    "Alatsi";   /* texto corrido                    */
+--font-accent:  "Lora";     /* cursivas: la voz de la marca     */
+```
+
+Se cargan desde Google Fonts con el `<link>` del `<head>`.
+
+**Poppins sustituye a TT Wellingtons**, que es una tipografía comercial de
+TypeType y no se puede servir sin licencia. Es la aproximación más cercana
+disponible libremente: geométrica, de formas circulares, como los ceros del
+logotipo. Si compras la licencia de TT Wellingtons, basta con alojar los
+archivos y cambiar `--font-display`.
+
+**Alatsi solo existe en peso 400.** No tiene negrita. Por eso todo lo que
+necesita peso —botones, rótulos, etiquetas, números de servicio, `<strong>`—
+está declarado con `--font-display`. Si asignas Alatsi a alguno de esos
+elementos, el navegador fingirá la negrita y se verá sucio.
 
 La tipografía usa el stack del sistema con `Inter` primero. Si quieres cargar
 Inter como webfont, añade el `<link>` en el `<head>` de `index.html`.

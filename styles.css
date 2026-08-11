@@ -4,38 +4,52 @@
    ════════════════════════════════════════════ */
 
 /* ─── Tokens ───────────────────────────────
-   Paleta de tres tonos sobre fondo beige:
-     negro  hsl(0 0% 5%)      → texto principal y bloques oscuros
-     café   hsl(19 56% 40%)   → todo el texto secundario (5,03:1 sobre beige)
-     azul   hsl(210 100% 56%) → acento
+   PALETA — los cuatro colores del manual de marca, sin añadidos:
+     crema     #F0EADA  fondo
+     gris      #C5C1B7  líneas y grafismo
+     café      #855C4C  texto secundario y acento
+     espresso  #533C36  texto principal y bloques oscuros
 
-   El azul puro rinde 2,89:1 sobre el beige, insuficiente para texto: se usa
-   como grafismo y sobre fondo negro (5,91:1). Para texto pequeño en azul
-   sobre beige va --blue-ink, el mismo tono al 40 % de luminosidad (4,92:1).
+   Contrastes medidos sobre crema: espresso 8,46:1 · café 4,81:1 · gris
+   1,50:1. Por eso el gris nunca lleva texto, solo líneas.
+
+   Sobre espresso: crema 8,46:1 · gris 5,65:1 · café 1,76:1. El café NO
+   se puede usar sobre los bloques oscuros; ahí el acento es crema.
+
+   Los tres valores derivados son mezclas de esos mismos cuatro colores,
+   necesarias para estados que la paleta plana no cubre. El rojo de error
+   es la única excepción y está justificada más abajo.
    ────────────────────────────────────────── */
 :root {
-  --ink:        #0E0E0E;   /* negro */
-  --brown:      #9F512D;   /* café  hsl(19 56% 40%) */
-  --blue:       #1F8FFF;   /* azul  hsl(210 100% 56%) */
-  --blue-ink:   #0066CC;   /* mismo azul, legible sobre beige */
+  --cream:      #F0EADA;
+  --grey:       #C5C1B7;
+  --brown:      #855C4C;
+  --espresso:   #533C36;
 
-  --paper:      #FFEFD6;   /* beige hsl(37 100% 92%) */
-  --paper-alt:  #F5E6D1;   /* beige más profundo, secciones alternas.
-                              No bajar de esta luminosidad: el café cae a
-                              4,22:1 y el texto secundario deja de cumplir AA. */
-  --field:      #FFF7EB;   /* fondo de los campos del formulario */
-  --line:       #DBC7B3;
-  --line-soft:  #E8DAC9;
+  --ink:        var(--espresso);
+  --paper:      var(--cream);
+  --line:       var(--grey);
 
-  --on-dark:      #C9B79C; /* texto secundario sobre bloques negros */
-  --on-dark-dim:  #8C7A66;
-  --ink-lift:     #241D16; /* negro levantado, para hover de botones */
-  --danger:       #B3261E;
+  /* Mezclas de la propia paleta */
+  --paper-alt:  #EAE4D5;   /* crema + 14 % gris. No oscurecer más: el café
+                              encima cae por debajo de 4,5:1 (queda en 4,56). */
+  --line-soft:  #DFDACB;   /* crema + gris, para separadores tenues */
+  --ink-lift:   #64473E;   /* espresso + 35 % café, hover de botones */
 
-  /* Alias: todo el texto secundario del sitio es café */
+  --on-dark:      var(--grey);  /* texto secundario sobre espresso, 5,65:1 */
+  --field:        var(--cream); /* campos, sobre el formulario en tono alterno */
+  --placeholder:  #A58777;      /* crema + 70 % café: 2,76:1, suficiente para
+                                   texto de ejemplo sin parecer un valor real */
+
+  /* Único color fuera del manual. Un error en café no se lee como error:
+     el rojo aquí es semántico, no decorativo. Está desplazado hacia la
+     familia cálida de la marca y rinde 6,22:1 sobre crema. */
+  --danger:     #8E3B2A;
+
+  /* Alias heredados: el acento y el texto secundario son el mismo café */
+  --accent:     var(--brown);
   --ink-soft:   var(--brown);
   --muted:      var(--brown);
-  --accent:     var(--blue);
 
   --radius:     4px;
   --radius-lg:  10px;
@@ -44,8 +58,13 @@
   --gutter:     clamp(1.25rem, 5vw, 2.5rem);
   --section-y:  clamp(4.5rem, 10vw, 8.5rem);
 
-  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          "Helvetica Neue", Arial, sans-serif;
+  /* TIPOGRAFÍAS — Poppins sustituye a TT Wellingtons (comercial, sin
+     licencia libre). Alatsi y Lora son las del manual.
+     Ojo: Alatsi solo existe en peso 400, así que todo lo que necesite
+     negrita va en --font-display. */
+  --font-display: "Poppins", "Futura", "Century Gothic", sans-serif;
+  --font-body:    "Alatsi", "Trebuchet MS", -apple-system, sans-serif;
+  --font-accent:  "Lora", Georgia, "Times New Roman", serif;
 
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
@@ -63,19 +82,21 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--font);
+  font-family: var(--font-body);
   font-size: 17px;
-  line-height: 1.65;
-  letter-spacing: -0.011em;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Los títulos llevan la tipografía de display. Alatsi no tiene negrita,
+   así que cualquier peso alto de la página pasa por aquí. */
 h1, h2, h3, h4 {
   margin: 0;
+  font-family: var(--font-display);
   font-weight: 600;
-  letter-spacing: -0.035em;
-  line-height: 1.08;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
 }
 
 p { margin: 0; }
@@ -95,7 +116,7 @@ a {
 }
 
 :focus-visible {
-  outline: 2px solid var(--blue-ink);
+  outline: 2px solid var(--brown);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -141,6 +162,7 @@ a {
 }
 
 .eyebrow {
+  font-family: var(--font-display);
   font-size: 0.74rem;
   font-weight: 600;
   letter-spacing: 0.16em;
@@ -155,7 +177,7 @@ a {
   content: "";
   width: 22px;
   height: 2px;
-  background: var(--blue);
+  background: var(--brown);
   flex: none;
 }
 
@@ -175,7 +197,7 @@ a {
   padding: 0.95rem 1.65rem;
   font-size: 0.95rem;
   font-weight: 500;
-  font-family: inherit;
+  font-family: var(--font-display);
   letter-spacing: -0.01em;
   border: 1px solid var(--btn-bd);
   border-radius: 100px;
@@ -195,10 +217,10 @@ a {
 .btn--ghost { --btn-bd: var(--brown); }
 .btn--ghost:hover { --btn-bd: var(--ink); }
 
-/* Sobre los bloques negros. Al pasar el cursor vira al azul pleno:
-   es el único lugar donde el acento ocupa una superficie entera. */
+/* Sobre los bloques espresso. El hover vira al gris de la paleta, que
+   mantiene el texto en 5,65:1. */
 .btn--light { --btn-bg: var(--paper); --btn-fg: var(--ink); --btn-bd: var(--paper); }
-.btn--light:hover { --btn-bg: var(--blue); --btn-bd: var(--blue); --btn-fg: var(--ink); }
+.btn--light:hover { --btn-bg: var(--grey); --btn-bd: var(--grey); --btn-fg: var(--ink); }
 
 .btn--sm   { padding: 0.62rem 1.15rem; font-size: 0.87rem; }
 .btn--full { width: 100%; }
@@ -209,7 +231,7 @@ a {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(255, 239, 214, 0.85);
+  background: rgba(240, 234, 218, 0.88);
   backdrop-filter: saturate(180%) blur(14px);
   -webkit-backdrop-filter: saturate(180%) blur(14px);
   border-bottom: 1px solid transparent;
@@ -231,6 +253,7 @@ a {
   gap: 3px;
 }
 .logo__mark {
+  font-family: var(--font-display);
   font-size: 1.3rem;
   font-weight: 700;
   letter-spacing: -0.05em;
@@ -239,7 +262,7 @@ a {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--blue);
+  background: var(--brown);
 }
 
 .nav {
@@ -256,7 +279,7 @@ a {
   left: 0; bottom: 0;
   width: 100%;
   height: 2px;
-  background: var(--blue);
+  background: var(--brown);
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.28s var(--ease);
@@ -300,8 +323,10 @@ a {
   margin-bottom: 1.75rem;
 }
 .hero__title em {
+  font-family: var(--font-accent);
   font-style: italic;
-  font-weight: 400;
+  font-weight: 500;
+  letter-spacing: -0.01em;
   color: var(--brown);
 }
 
@@ -340,6 +365,7 @@ a {
 }
 .pledge:not(:first-child) { padding-left: 1.5rem; }
 .pledge dt {
+  font-family: var(--font-display);
   font-size: 1.05rem;
   font-weight: 600;
   letter-spacing: -0.025em;
@@ -360,6 +386,8 @@ a {
   background: var(--paper-alt);
 }
 .marquee__label {
+  font-family: var(--font-display);
+  font-weight: 600;
   font-size: 0.76rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -373,10 +401,11 @@ a {
   gap: clamp(1.5rem, 5vw, 3.5rem);
   margin: 0;
   padding: 0;
+  font-family: var(--font-display);
   font-size: clamp(1rem, 2vw, 1.25rem);
   font-weight: 600;
   letter-spacing: -0.03em;
-  color: #856147;
+  color: var(--brown);
 }
 .marquee__list li { transition: color 0.2s var(--ease); }
 .marquee__list li:hover { color: var(--ink); }
@@ -392,10 +421,11 @@ a {
 .card:hover { background: var(--paper-alt); }
 .card__num {
   display: block;
+  font-family: var(--font-display);
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.12em;
-  color: var(--blue-ink);
+  color: var(--brown);
   margin-bottom: 3.25rem;
 }
 .card h3 {
@@ -425,9 +455,10 @@ a {
   border-bottom: 1px solid var(--line);
 }
 .step__num {
+  font-family: var(--font-display);
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--blue-ink);
+  color: var(--brown);
   letter-spacing: 0.08em;
   padding-top: 0.35rem;
 }
@@ -460,7 +491,10 @@ a {
   border-radius: var(--radius-lg);
 }
 .commitment h3 {
-  font-size: clamp(1.2rem, 2.6vw, 1.75rem);
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.25rem, 2.7vw, 1.85rem);
   line-height: 1.3;
   letter-spacing: -0.025em;
   max-width: 24ch;
@@ -488,9 +522,10 @@ a {
   top: 0.66em;
   width: 8px;
   height: 2px;
-  background: var(--blue);
+  background: var(--grey);
 }
 .commitment strong {
+  font-family: var(--font-display);
   color: var(--paper);
   font-weight: 600;
 }
@@ -532,7 +567,7 @@ a {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  border: 2px solid var(--blue);
+  border: 2px solid var(--brown);
 }
 
 .contact__direct {
@@ -545,7 +580,7 @@ a {
   font-size: 0.94rem;
 }
 .contact__direct a { border-bottom: 1px solid var(--brown); padding-bottom: 2px; }
-.contact__direct a:hover { color: var(--blue-ink); border-color: var(--blue-ink); }
+.contact__direct a:hover { color: var(--brown); border-color: var(--brown); }
 
 /* Formulario */
 .form-wrap {
@@ -563,7 +598,7 @@ a {
 }
 .tab {
   padding: 1.05rem 1rem;
-  font-family: inherit;
+  font-family: var(--font-display);
   font-size: 0.92rem;
   font-weight: 500;
   color: var(--muted);
@@ -578,7 +613,7 @@ a {
 .tab.is-active {
   color: var(--ink);
   background: var(--paper);
-  border-bottom-color: var(--blue);
+  border-bottom-color: var(--brown);
 }
 
 .form {
@@ -604,6 +639,7 @@ a {
 }
 .field { display: grid; gap: 0.45rem; }
 .field label {
+  font-family: var(--font-display);
   font-size: 0.85rem;
   font-weight: 500;
   color: var(--ink-soft);
@@ -629,11 +665,11 @@ a {
 .field select:focus,
 .field textarea:focus {
   outline: none;
-  border-color: var(--blue-ink);
-  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
+  border-color: var(--brown);
+  box-shadow: 0 0 0 3px rgba(133, 92, 76, 0.18);
 }
 .field input::placeholder,
-.field textarea::placeholder { color: #BFA88F; }
+.field textarea::placeholder { color: var(--placeholder); }
 
 .field.has-error input,
 .field.has-error select,
@@ -661,7 +697,7 @@ a {
   height: 17px;
   flex: none;
   margin-top: 2px;
-  accent-color: var(--blue-ink);
+  accent-color: var(--brown);
 }
 
 .form__note {
@@ -701,6 +737,7 @@ a {
   cursor: pointer;
   padding: 1.4rem 2.5rem 1.4rem 0;
   position: relative;
+  font-family: var(--font-display);
   font-size: 1.03rem;
   font-weight: 500;
   letter-spacing: -0.02em;
@@ -713,8 +750,8 @@ a {
   top: 50%;
   width: 11px;
   height: 11px;
-  border-right: 2px solid var(--blue-ink);
-  border-bottom: 2px solid var(--blue-ink);
+  border-right: 2px solid var(--brown);
+  border-bottom: 2px solid var(--brown);
   transform: translateY(-70%) rotate(45deg);
   transition: transform 0.25s var(--ease);
 }
@@ -767,10 +804,11 @@ a {
   gap: 1.5rem;
 }
 .footer__nav h4 {
+  font-family: var(--font-display);
   font-size: 0.76rem;
   letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: var(--blue);
+  color: var(--cream);
   font-weight: 600;
   margin-bottom: 1rem;
 }
