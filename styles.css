@@ -319,9 +319,12 @@ a {
   padding-bottom: clamp(3rem, 6vw, 5rem);
 }
 
+/* El ancho da cabida a «Negocios que trascienden.» en una sola línea: son
+   12,8em de texto, así que 21ch (≈13,6em) deja margen. En móvil la segunda
+   línea vuelve a partirse sola, que es lo único que cabe a ese tamaño. */
 .hero__title {
   font-size: clamp(2.5rem, 6.6vw, 5rem);
-  max-width: 17ch;
+  max-width: 21ch;
   margin-bottom: 1.75rem;
 }
 .hero__title em {
@@ -351,35 +354,34 @@ a {
   color: var(--muted);
 }
 
-/* Banda de compromisos del hero. Ocupa el lugar donde antes iban las
-   métricas: el peso visual lo lleva el término, no una cifra. */
+/* Banda de principios del hero. Ocupa el lugar donde antes iban las
+   métricas: el peso visual lo lleva el término, no una cifra. Las cinco
+   celdas se separan con el hueco de 1px sobre el fondo gris del contenedor,
+   así que la rejilla nunca puede quedar con una celda vacía —se vería como
+   un bloque gris—: de cinco columnas se pasa directo a una. */
 .pledges {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 1px;
   margin: clamp(3.5rem, 7vw, 5.5rem) 0 0;
+  padding: 0;
+  list-style: none;
   background: var(--line);
   border-block: 1px solid var(--line);
 }
 .pledge {
+  display: flex;
+  align-items: center;
   background: var(--paper);
-  padding: 1.75rem 1.5rem 1.75rem 0;
-}
-.pledge:not(:first-child) { padding-left: 1.5rem; }
-.pledge dt {
+  padding: 1.75rem 1.25rem 1.75rem 0;
   font-family: var(--font-display);
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 600;
+  line-height: 1.35;
   letter-spacing: -0.025em;
-  margin-bottom: 0.6rem;
+  text-wrap: balance;
 }
-.pledge dd {
-  margin: 0;
-  font-size: 0.9rem;
-  line-height: 1.55;
-  color: var(--muted);
-  max-width: 34ch;
-}
+.pledge:not(:first-child) { padding-left: 1.25rem; }
 
 /* ─── Marcas ─────────────────────────────── */
 .marquee {
@@ -396,11 +398,15 @@ a {
   color: var(--muted);
   margin-bottom: 1.1rem;
 }
+/* Rejilla de tres columnas —no flex— para que los cinco valores caigan
+   siempre 3 + 2 y queden alineados en columna. Las columnas se miden por
+   contenido: con 1fr, «Compromiso con la transformación» se partiría en dos
+   líneas y rompería la simetría de la fila. */
 .marquee__list {
   list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: clamp(1.5rem, 5vw, 3.5rem);
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  gap: 1.1rem clamp(1.5rem, 4vw, 3rem);
   margin: 0;
   padding: 0;
   font-family: var(--font-display);
@@ -881,6 +887,13 @@ a {
   .grid--4 { grid-template-columns: repeat(2, 1fr); }
   .contact__inner { grid-template-columns: 1fr; }
   .card__num { margin-bottom: 2rem; }
+
+  /* En una sola columna el enunciado más largo llega justo al borde del
+     móvil. La sangría va en el padding y no en un max-width: la celda debe
+     seguir ocupando todo el ancho o asoma el fondo gris del contenedor. */
+  .pledges { grid-template-columns: 1fr; }
+  .pledge { padding: 1.1rem 3rem 1.1rem 0; }
+  .pledge:not(:first-child) { padding-left: 0; }
 }
 
 @media (max-width: 860px) {
@@ -915,9 +928,7 @@ a {
   .header__actions .btn { display: none; }
 
   .grid--3 { grid-template-columns: 1fr; }
-  .pledges { grid-template-columns: 1fr; }
-  .pledge { padding: 1.35rem 0; }
-  .pledge:not(:first-child) { padding-left: 0; }
+  .marquee__list { grid-template-columns: repeat(2, max-content); }
 
   .footer__inner { grid-template-columns: 1fr; }
 }
@@ -925,6 +936,7 @@ a {
 @media (max-width: 640px) {
   body { font-size: 16px; }
   .grid--4 { grid-template-columns: 1fr; }
+  .marquee__list { grid-template-columns: 1fr; gap: 0.85rem; }
   .field-row { grid-template-columns: 1fr; }
   .step { grid-template-columns: 42px 1fr; gap: 1rem; }
     .hero__actions .btn { flex: 1 1 100%; }
