@@ -86,18 +86,17 @@ Cada modificación necesita **Implementar** → **Gestionar implementaciones** �
 editar → *Versión: Nueva versión*. Si solo guardas, el sitio seguirá usando la
 versión anterior.
 
-## Qué debes reemplazar antes de publicar
+## Qué queda pendiente
 
-Está marcado con comentarios `<!-- Reemplazar ... -->` en `index.html`:
+Todo el contenido publicado es real y verificado con la agencia. Lo que
+falta por añadir:
 
-- **Métricas del hero** (40+ clientes, 180%, 92%) — están como marcador de posición.
-- **Nombres de clientes** en la franja "Trabajamos con equipos de".
-- **Casos de resultados** (−38%, 3,4×, +210%) y el **testimonio**, que hoy tiene
-  atribución genérica.
-- **Datos de contacto**: `hola@004.agency` y el teléfono aparecen en la sección de
-  contacto y en el footer.
-- **Enlaces de redes** en el footer (hoy apuntan a `#`).
-- **Aviso de privacidad**: falta la página real.
+- **Aviso de privacidad.** El formulario recaba nombre, correo, empresa y
+  mensaje. La LFPDPPP obliga a publicarlo. Lo redacta la agencia; después hay
+  que crear la página y devolver el enlace al pie.
+- **Sección de equipo.** "Quién está detrás", pendiente de redactar.
+- **Imágenes.** La página no tiene ninguna. El manual de marca usa degradados
+  granulados que encajarían en el hero y en los bloques oscuros.
 
 ## Personalización rápida
 
